@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>One Human Race — Saken · Say Something Norway</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --dark:   #1C1B19;
+      --mid:    #C4724A;
+      --light:  #E8C4B8;
+      --pale:   #F9EDE8;
+      --text:   #1C1B19;
+      --muted:  #5A5A56;
+      --subtle: #888780;
+      --bg:     #FAF9F6;
+      --bg2:    #F2EDE8;
+      --border: rgba(0,0,0,0.09);
+      --r:      12px;
+    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    .page { max-width: 820px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; }
+
+    .doc-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 1.25rem; border-bottom: 0.5px solid var(--border); margin-bottom: 2rem; flex-wrap: wrap; gap: 0.75rem; }
+    .doc-date { font-size: 12px; color: var(--subtle); }
+
+    /* ── Opening quote ── */
+    .opening-quote { text-align: center; padding: 3rem 3rem 2.5rem; background: var(--dark); border-radius: var(--r); margin-bottom: 2rem; position: relative; overflow: hidden; }
+    .opening-quote::after { content: ''; position: absolute; bottom: -60px; right: -60px; width: 220px; height: 220px; border-radius: 50%; background: rgba(196,114,74,0.06); pointer-events: none; }
+    .oq-mark { font-family: 'Playfair Display', serif; font-size: 7rem; color: var(--mid); line-height: 0.4; display: block; margin-bottom: 1.25rem; opacity: 0.5; }
+    .oq-text { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(1.1rem, 2.5vw, 1.45rem); color: #F5F0E8; line-height: 1.7; max-width: 620px; margin: 0 auto 1rem; }
+    .oq-cite { display: block; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--light); margin-bottom: 1.5rem; }
+    .oq-divider { width: 50px; height: 2px; background: var(--mid); margin: 0 auto 1.5rem; }
+    .oq-response { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.05rem; color: var(--light); line-height: 1.65; max-width: 520px; margin: 0 auto; }
+
+    /* ── Hero ── */
+    .hero { background: var(--dark); border-radius: var(--r); padding: 3rem 3rem 2.5rem; margin-bottom: 2rem; position: relative; overflow: hidden; }
+    .hero::after { content: ''; position: absolute; bottom: -80px; right: -80px; width: 260px; height: 260px; border-radius: 50%; background: rgba(196,114,74,0.07); pointer-events: none; }
+    .hero-eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--light); font-weight: 500; display: block; margin-bottom: 0.75rem; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 700; color: #F5F0E8; line-height: 1.15; margin-bottom: 0.75rem; }
+    .hero-sub { font-size: 1rem; color: rgba(245,240,232,0.7); max-width: 540px; line-height: 1.7; margin-bottom: 1.75rem; }
+    .hero-stats { display: flex; gap: 2.5rem; flex-wrap: wrap; }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--light); line-height: 1; display: block; }
+    .stat-label { font-size: 11px; color: rgba(245,240,232,0.5); line-height: 1.4; max-width: 110px; }
+
+    /* ── MLK block ── */
+    .mlk-block { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-bottom: 2rem; border-radius: var(--r); overflow: hidden; border: 0.5px solid var(--border); }
+    .mlk-quote { background: var(--dark); padding: 2rem; }
+    .mlk-mark { font-family: 'Playfair Display', serif; font-size: 6rem; color: var(--mid); line-height: 0.5; display: block; margin-bottom: 0.75rem; opacity: 0.5; }
+    .mlk-quote p { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.05rem; color: #F5F0E8; line-height: 1.65; }
+    .mlk-cite { font-family: 'DM Sans', sans-serif !important; font-style: normal !important; font-size: 11px !important; color: var(--light) !important; margin-top: 0.75rem !important; display: block; }
+    .mlk-right { background: var(--bg2); padding: 2rem; }
+    .mlk-label { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--mid); margin-bottom: 0.6rem; }
+    .mlk-body { font-size: 13.5px; color: var(--muted); line-height: 1.7; }
+    .mlk-body strong { color: var(--text); font-weight: 500; }
+
+    /* ── Sections ── */
+    .sec-label { font-size: 11px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--subtle); font-weight: 500; display: block; margin-bottom: 0.5rem; }
+    .sec-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 500; color: var(--text); margin-bottom: 0.4rem; }
+    .sec-sub { font-size: 0.9rem; color: var(--muted); line-height: 1.65; margin-bottom: 1.5rem; }
+    .divider { border: none; border-top: 0.5px solid var(--border); margin: 2rem 0; }
+
+    /* ── Cards ── */
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 14px; margin-bottom: 2rem; }
+    .card { background: #fff; border: 0.5px solid var(--border); border-radius: var(--r); padding: 1.25rem; }
+    .card.positive { border-top: 3px solid #3B8A5A; }
+    .card.negative { border-top: 3px solid #9B3030; }
+    .card-tag { font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; display: block; }
+    .card-tag.pos { color: #3B8A5A; }
+    .card-tag.neg { color: #9B3030; }
+    .card-icon { font-size: 22px; margin-bottom: 8px; display: block; }
+    .card-title { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 5px; line-height: 1.35; }
+    .card-desc { font-size: 12.5px; color: var(--muted); line-height: 1.6; }
+
+    /* ── Origin ── */
+    .origin-block { border-left: 3px solid var(--mid); background: var(--pale); border-radius: 0 var(--r) var(--r) 0; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+    .origin-year { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; color: var(--mid); line-height: 1; display: block; margin-bottom: 4px; }
+    .origin-headline { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 6px; }
+    .origin-body { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+    /* ── Absurdity ── */
+    .absurdity-block { background: #E6F0FB; border-left: 3px solid #185FA5; border-radius: 0 var(--r) var(--r) 0; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+    .abs-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #0C447C; font-weight: 500; margin-bottom: 6px; display: block; }
+    .abs-quote { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-style: italic; color: #042C53; margin-bottom: 8px; line-height: 1.5; }
+    .abs-body { font-size: 13px; color: #185FA5; line-height: 1.65; }
+
+    /* ── Centre quote ── */
+    .quote-block { text-align: center; padding: 2rem; margin-bottom: 2rem; background: var(--dark); border-radius: var(--r); }
+    .quote-text { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-style: italic; color: #F5F0E8; line-height: 1.6; margin-bottom: 0.75rem; }
+    .quote-line { width: 40px; height: 2px; background: var(--mid); margin: 0 auto 0.75rem; }
+    .quote-sub { font-size: 12.5px; color: var(--light); font-style: italic; max-width: 500px; margin: 0 auto; line-height: 1.65; }
+
+    /* ── Footer ── */
+    .doc-footer { border-top: 0.5px solid var(--border); padding-top: 1.25rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem; }
+    .doc-footer p, .doc-footer a { font-size: 12px; color: var(--subtle); text-decoration: none; }
+
+    @media (max-width: 600px) {
+      .hero { padding: 2rem 1.5rem; }
+      .opening-quote { padding: 2rem 1.5rem; }
+      .mlk-block { grid-template-columns: 1fr; }
+      .cards-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <div class="doc-header">
+    <a href="https://saysomething.no"><img src="Say_Something_logo_2000x600.png" alt="Say Something Norway" style="height:32px;width:auto;display:block;" /></a>
+    <span class="doc-date">One Human Race · saysomething.no</span>
+  </div>
+
+  <!-- Åpningssitat MLK -->
+  <div class="opening-quote">
+    <span class="oq-mark">"</span>
+    <p class="oq-text">I have a dream that my four little children will one day live in a nation where they will not be judged by the color of their skin but by the content of their character.</p>
+    <span class="oq-cite">— Martin Luther King Jr., Washington D.C., 1963</span>
+    <div class="oq-divider"></div>
+    <p class="oq-response">Som alle andre store jobber starter det med et lite steg i riktig retning — og det steget kan vi ta sammen.</p>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero">
+    <span class="hero-eyebrow">One Human Race — Saken</span>
+    <h1>Hva skjer når vi behandler<br>hverandre som én menneskelig rase —<br>og hva skjer når vi ikke gjør det.</h1>
+    <p class="hero-sub">Vitenskapen har allerede svart på spørsmålet. Det eneste som gjenstår er å bestemme om vi lar språket vårt gjenspeile det.</p>
+    <div class="hero-stats">
+      <div><span class="stat-num">99,9%</span><p class="stat-label">av menneskers DNA er identisk på tvers av alle mennesker</p></div>
+      <div><span class="stat-num">1453</span><p class="stat-label">Året ordet «rase» ble oppfunnet — ikke et vitenskapelig faktum</p></div>
+      <div><span class="stat-num">1</span><p class="stat-label">menneskelig rase. Det er det vitenskapen sier.</p></div>
+    </div>
+  </div>
+
+  <!-- Opprinnelse 1453 -->
+  <div class="origin-block">
+    <span class="origin-year">1453</span>
+    <p class="origin-headline">Ordet «rase» ble oppfunnet for å rettferdiggjøre slavehandelen — ikke for å beskrive vitenskap.</p>
+    <p class="origin-body">Det var et bevisst markedsføringsgrep — et ord konstruert for å få utnyttelse til å føles naturlig og uunngåelig. Det finnes intet biologisk, genetisk eller vitenskapelig grunnlag for å klassifisere mennesker i raser etter hudfarge. Humangenomprosjektet bekreftet det biologien lenge har vist: vi er 99,9 % identiske. Likevel arvet vi dette oppfunnede ordet, fortsatte å bruke det og bygde hele tankesystemer rundt det — systemer som fortsatt former hvordan vi ser på hverandre i dag.</p>
+  </div>
+
+  <!-- Absurditet -->
+  <div class="absurdity-block">
+    <span class="abs-label">Tenk på det absurde</span>
+    <p class="abs-quote">«Blå mennesker er tyver og løgnere.»</p>
+    <p class="abs-body">Vi ville umiddelbart gjenkjenne det som tull — fordi utseende ikke forteller oss noe om karakter. Rasestereotypier fungerer nøyaktig på samme måte. De er like oppdiktede, like falske og like absurde. Den eneste forskjellen er at vi har gjentatt dem så lenge at de begynte å føles virkelige.</p>
+  </div>
+
+  <!-- MLK-blokk -->
+  <div class="mlk-block">
+    <div class="mlk-quote">
+      <span class="mlk-mark">"</span>
+      <p>I have a dream that my four little children will one day live in a nation where they will not be judged by the color of their skin but by the content of their character.</p>
+      <span class="mlk-cite">— Martin Luther King Jr., Washington D.C., 1963</span>
+    </div>
+    <div class="mlk-right">
+      <p class="mlk-label">Dette er den bevegelsen.</p>
+      <p class="mlk-body">One Human Race er den verdensomspennende grasrotkampanjen for å endelig bygge den verden King drømte om — ved å starte med det ene som former hvordan vi tenker: ordene vi bruker.<br><br>
+      Så lenge vi fortsetter å bruke et ord oppfunnet for å splitte oss, gir vi makt til dem som tjener på den splittelsen. Identitetspolitikk lever av den falske ideen om at mennesker er fundamentalt forskjellige etter rase. Vitenskapen sier det motsatte.<br><br>
+      <strong>Den eneste måten å virkelig forene oss på er som én menneskelig rase — hvor hvert menneske dømmes ikke etter hudfargen sin, men etter innholdet i sin karakter.</strong></p>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- Positive fordeler -->
+  <span class="sec-label">Når vi behandler hverandre som én menneskelig rase</span>
+  <h2 class="sec-title">Fordelene er reelle — og de påvirker alle.</h2>
+  <p class="sec-sub">Dette er ikke idealisme. Dette er dokumenterte, målbare resultater når samfunn, organisasjoner og lokalsamfunn genuint omfavner menneskelig likeverd.</p>
+
+  <div class="cards-grid">
+    <div class="card positive">
+      <span class="card-icon">🤝</span>
+      <span class="card-tag pos">Samfunn</span>
+      <p class="card-title">Sterkere, mer sammensveiset fellesskap</p>
+      <p class="card-desc">Når mennesker ser hverandre som fundamentalt likeverdige — ikke delt av oppfunnede kategorier — øker tilliten, samarbeidet fordypes og samfunn blir mer robuste.</p>
+    </div>
+    <div class="card positive">
+      <span class="card-icon">🧠</span>
+      <span class="card-tag pos">Vitenskap</span>
+      <p class="card-title">Fordommer svekkes når språket endres</p>
+      <p class="card-desc">Nevrovitenskap viser at språket vi bruker aktivt former nevrale baner for fordommer. Når vi slutter å forsterke falske kategorier i ordene våre, svekkes implisitte fordommer over tid.</p>
+    </div>
+    <div class="card positive">
+      <span class="card-icon">📈</span>
+      <span class="card-tag pos">Økonomi</span>
+      <p class="card-title">Mangfold driver prestasjoner</p>
+      <p class="card-desc">Organisasjoner og samfunn som fullt ut utnytter alt menneskelig talent — uten rasefiltrering — presterer konsekvent bedre enn de som ikke gjør det.</p>
+    </div>
+    <div class="card positive">
+      <span class="card-icon">🏫</span>
+      <span class="card-tag pos">Utdanning</span>
+      <p class="card-title">Hvert barn får en rettferdig start</p>
+      <p class="card-desc">Stereotypitrussel — den dokumenterte skaden som skjer når barn internaliserer raseetiketter — forsvinner når disse etikettene fjernes. Hvert barn kan nå sitt fulle potensial.</p>
+    </div>
+    <div class="card positive">
+      <span class="card-icon">⚖️</span>
+      <span class="card-tag pos">Rettferdighet</span>
+      <p class="card-title">Mer rettferdige systemer og institusjoner</p>
+      <p class="card-desc">Når rasespråk fjernes fra hvordan vi kategoriserer mennesker, har fordommene innebygd i ansettelse, justis, helsevesen og utdanning mindre å nære seg på.</p>
+    </div>
+    <div class="card positive">
+      <span class="card-icon">🌍</span>
+      <span class="card-tag pos">Demokrati</span>
+      <p class="card-title">Mindre drivstoff til dem som splitter</p>
+      <p class="card-desc">Identitetspolitikk er avhengig av å få folk til å føle at gruppen deres er truet av en annen. Én menneskelig rase fjerner grunnlaget som gjør den manipulasjonen mulig.</p>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- Negative konsekvenser -->
+  <span class="sec-label">Når vi ikke gjør det — kostnaden</span>
+  <h2 class="sec-title">Konsekvensene av å holde et falskt ord i live.</h2>
+  <p class="sec-sub">Hver gang ordet «rase» brukes som om det var et biologisk faktum, er dette de reelle konsekvensene.</p>
+
+  <div class="cards-grid">
+    <div class="card negative">
+      <span class="card-icon">🔥</span>
+      <span class="card-tag neg">Splittelse</span>
+      <p class="card-title">Identitetspolitikk får et våpen</p>
+      <p class="card-desc">Politiske bevegelser som lever av frykt og splittelse trenger at folk tror de er fundamentalt forskjellige fra hverandre. Det falske ordet «rase» gir dem akkurat det verktøyet — og vi skjerper det hver gang vi bruker det.</p>
+    </div>
+    <div class="card negative">
+      <span class="card-icon">🧒</span>
+      <span class="card-tag neg">Barn</span>
+      <p class="card-title">Barn lærer å se forskjell først</p>
+      <p class="card-desc">Barn som hører rasekategorier brukt om mennesker, lærer å sortere verden på den måten. Vi kobler fordommer inn i neste generasjon før de har noen sjanse til å velge annerledes.</p>
+    </div>
+    <div class="card negative">
+      <span class="card-icon">😔</span>
+      <span class="card-tag neg">Psykologi</span>
+      <p class="card-title">Stereotypitrussel undertrykker potensial</p>
+      <p class="card-desc">Når en person gjøres oppmerksom på en rasestereotype før en oppgave, faller prestasjonen målbart — selv når de bevisst avviser stereotypen. Etiketten alene gjør skaden.</p>
+    </div>
+    <div class="card negative">
+      <span class="card-icon">📉</span>
+      <span class="card-tag neg">Samfunn</span>
+      <p class="card-title">Talent sløses bort i stor skala</p>
+      <p class="card-desc">Når mennesker filtreres eller begrenses av rasekategorier, mister hele samfunn den fulle verdien av menneskelig potensial — i innovasjon, lederskap, kunst og vitenskap som aldri realiseres.</p>
+    </div>
+    <div class="card negative">
+      <span class="card-icon">⚔️</span>
+      <span class="card-tag neg">Konflikt</span>
+      <p class="card-title">Splittelse eskalerer til vold</p>
+      <p class="card-desc">Historien viser tydelig hvor logikken i rasesplittelse fører når den får løpe ukontrollert. Ordet er ikke uskyldig — det bærer med seg århundrers vold det ble designet for å muliggjøre.</p>
+    </div>
+    <div class="card negative">
+      <span class="card-icon">🔄</span>
+      <span class="card-tag neg">Kultur</span>
+      <p class="card-title">Løgnen blir sannheten</p>
+      <p class="card-desc">Jo lenger en falsk idé gjentas, jo mer virkelig føles den. Hver generasjon som arver «rase» som en nøytral beskrivelse arver løgnen som et faktum — vanskeligere å angre for hvert år som går.</p>
+    </div>
+  </div>
+
+  <!-- Sentralt sitat -->
+  <div class="quote-block">
+    <p class="quote-text">«Det falske ordet splitter oss.<br>Det sanne ordet forener oss.»</p>
+    <div class="quote-line"></div>
+    <p class="quote-sub">One Human Race er en verdensomspennende grasrotkampanje for å oppnå den verden Martin Luther King drømte om — der hvert menneske dømmes ikke etter hudfargen sin, men etter innholdet i sin karakter.</p>
+  </div>
+
+  <div class="doc-footer">
+    <p>Say Something Norway · <a href="https://saysomething.no">saysomething.no</a></p>
+    <p><a href="mailto:frode@saysomething.no">frode@saysomething.no</a></p>
+    <p>Kampanjelanseringen: 1. september 2026</p>
+  </div>
+
+</div>
+</body>
+</html>
